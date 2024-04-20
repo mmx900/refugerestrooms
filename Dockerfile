@@ -6,9 +6,6 @@ RUN apt-get update \
   # Clean up the apt cache
   && rm -rf /var/lib/apt/lists/*
 
-# Work around an issue with running "phantomjs --version"
-ENV OPENSSL_CONF=/etc/ssl/
-
 # Specify a major version of Node.js to download and install
 ENV NODEJS_MAJOR_VERSION=16
 
