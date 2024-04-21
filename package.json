@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "@rails/ujs": "^7.1.2",
-    "@rails/webpacker": "5.4.0",
+    "@rails/webpacker": "6.0.0-rc.6",
     "bootstrap": "^4.1.1",
     "jquery": "^3.3.1",
     "jquery-ujs": "^1.2.2",
@@ -28,5 +28,13 @@
   "engines": {
     "yarn": "1.x",
     "node": "20.x"
-  }
+  },
+  "babel": {
+    "presets": [
+      "./node_modules/@rails/webpacker/package/babel/preset.js"
+    ]
+  },
+  "browserslist": [
+    "defaults"
+  ]
 }
