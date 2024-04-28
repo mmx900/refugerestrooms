@@ -22,11 +22,13 @@ jobs:
 
     - name: Run docker-compose build
       run: docker-compose build
+      id: docker-compose-build
 
     - name: Run rubocop
       run: docker-compose run web rubocop
 
     - name: Run specs
+      if: ${{ !cancelled() && steps.docker-compose-build.outcome == 'success' }}
       run: docker-compose run -e "RAILS_ENV=test" web rake db:test:prepare spec
 
     - name: Report results to codeclimate (for job success)
