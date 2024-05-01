@@ -7,7 +7,6 @@ module Locations
     }
   end
 
-  # rubocop:disable Metrics/MethodLength
   def mock_location(location_name)
     location = locations[location_name.to_sym]
     page.execute_script "
@@ -19,5 +18,4 @@ module Locations
       }
     "
   end
-  # rubocop:enable Metrics/MethodLength
 end
