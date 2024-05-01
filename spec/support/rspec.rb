@@ -5,7 +5,7 @@ require 'json'
 # spec/spec_helper.rb
 #
 
-require_relative './locations'
+require_relative 'locations'
 
 Capybara.register_driver :poltergeist_debug do |app|
   Capybara::Poltergeist::Driver.new(
