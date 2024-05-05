@@ -5,7 +5,7 @@ require 'json'
 # spec/spec_helper.rb
 #
 
-require_relative './locations'
+require_relative 'locations'
 
 Capybara.javascript_driver = :cuprite
 Capybara.register_driver(:cuprite) do |app|
