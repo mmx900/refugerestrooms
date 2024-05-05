@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'restrooms', type: :feature, js: true do
+describe 'restrooms', :js do
   describe 'submission' do
     it 'adds a restroom when submitted' do
       visit root_path
