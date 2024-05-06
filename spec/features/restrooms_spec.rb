@@ -28,17 +28,18 @@ describe 'restrooms', :js do
       expect(page).to have_content("Your submission was rejected as spam.")
     end
 
-    # it "should guess my location" do
-    #   visit "/"
-    #   click_link "Submit a New Restroom"
-    #   mock_location("Oakland")
+    it 'guesses my location' do
+      visit "/"
+      click_link "Submit a New Restroom"
+      mock_location("Oakland")
 
-    #   find(".guess-btn").click
+      click_button 'Guess current location'
+      page.driver.wait_for_network_idle
 
-    #   expect(page).to have_field('restroom[street]', with: "1400 Broadway")
-    #   expect(page).to have_field('restroom[city]', with: "Oakland")
-    #   expect(page).to have_field('restroom[state]', with: "CA")
-    # end
+      expect(page).to have_field('restroom[street]', with: "1400 Broadway")
+      expect(page).to have_field('restroom[city]', with: "Oakland")
+      expect(page).to have_field('restroom[state]', with: "California")
+    end
   end
 
   describe 'search' do
@@ -59,7 +60,7 @@ describe 'restrooms', :js do
       mock_location "Oakland"
       click_button 'Search by Current Location'
 
-      expect(page).not_to have_content 'Some Cafe'
+      expect(page).to have_content 'Some Cafe'
     end
 
     it 'can search from the splash page with a screen reader' do
