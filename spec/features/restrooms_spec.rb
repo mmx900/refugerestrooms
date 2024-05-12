@@ -102,7 +102,6 @@ describe 'restrooms', :js do
     end
   end
 
-  # rubocop:disable RSpec/NoExpectationExample
   describe 'nearby restroom' do
     it 'shows nearby restrooms when they exist' do
       create(:oakland_restroom)
@@ -112,7 +111,7 @@ describe 'restrooms', :js do
 
       find(".guess-btn").click
 
-      page.has_css?(".nearby-container .listItem", visible: :visible)
+      expect(page).to have_css(".nearby-container .listItem", visible: :visible)
     end
 
     it "does not show nearby restrooms when they don't exist" do
@@ -122,10 +121,9 @@ describe 'restrooms', :js do
 
       find(".guess-btn").click
 
-      page.has_css?(".nearby-container .none", visible: :visible)
+      expect(page).to have_css(".nearby-container .none", visible: :visible)
     end
   end
-  # rubocop:enable RSpec/NoExpectationExample
 
   describe "edit" do
     it "creates an edit listing" do
