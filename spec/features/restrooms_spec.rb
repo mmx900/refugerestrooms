@@ -70,26 +70,22 @@ describe 'restrooms', :js do
       expect(find('button.current-location-button')['aria-label']).to be_truthy
     end
 
-    # rubocop:disable RSpec/NoExpectationExample
     it 'displays a map' do
       create(:oakland_restroom)
 
       visit root_path
       mock_location "Oakland"
       find('.current-location-button').click
-      # TODO: Figure out why this isn't working.
-      # print page.html
-      page.has_css?(".mapToggle", visible: true)
-      # find('.mapToggle').click
-      # print page.html
+      expect(page).to have_css(".map-toggle-btn", visible: :visible)
 
-      # TODO: Figure Out why This isn't working either
-      # page.has_css?(#)
-      # expect(page).to have_css('#mapArea.loaded')
-      # expect(page).to have_css('#mapArea .numberCircleText')
+      find('.map-toggle-btn').click
+
+      expect(page).to have_css('#mapArea.loaded')
+      expect(page).to have_css("#mapArea [role=button][aria-label='1']")
     end
   end
 
+  # rubocop:disable RSpec/NoExpectationExample
   describe 'preview' do
     it 'can preview a restroom before submitting' do
       visit "/"

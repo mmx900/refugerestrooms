@@ -46,6 +46,8 @@ FactoryBot.define do
       city { 'Oakland' }
       state { 'CA' }
       country { 'US' }
+      latitude { 37.8044 }
+      longitude { -122.27081 }
     end
 
     factory :spam_restroom do
