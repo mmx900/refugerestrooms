@@ -85,7 +85,6 @@ describe 'restrooms', :js do
     end
   end
 
-  # rubocop:disable RSpec/NoExpectationExample
   describe 'preview' do
     it 'can preview a restroom before submitting' do
       visit "/"
@@ -98,10 +97,12 @@ describe 'restrooms', :js do
 
       click_button "Preview"
 
-      page.has_css?(".nearby-container .listItem", visible: :visible)
+      expect(page).to have_css("div#mapArea", visible: :visible)
+      expect(page).to have_css("div#mapArea [title='Current Location']", visible: :visible)
     end
   end
 
+  # rubocop:disable RSpec/NoExpectationExample
   describe 'nearby restroom' do
     it 'shows nearby restrooms when they exist' do
       create(:oakland_restroom)

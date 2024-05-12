@@ -33,6 +33,7 @@ function initMap(x, y, image, draggable, callback){
   var myLatLng = new google.maps.LatLng(x, y);
 
   var currentLocation = new google.maps.Marker({
+    title: "Current Location",
     position: myLatLng,
     draggable: draggable,
     map: map,
