@@ -1,5 +1,7 @@
 // Vendor
-require('@rails/ujs').start()
+import Rails from '@rails/ujs'
+Rails.start()
+
 require('jquery')
 import 'bootstrap/dist/js/bootstrap'
 
