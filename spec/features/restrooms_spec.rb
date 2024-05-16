@@ -142,4 +142,32 @@ describe 'restrooms', :js do
       expect(Restroom.where(edit_id: restroom.id).size).to eq(2)
     end
   end
+
+  describe "vote" do
+    it "shows 'Not yet rated' message initially" do
+      restroom = create(:restroom, upvote: 0, downvote: 0)
+
+      visit "/restrooms/#{restroom.id}"
+
+      expect(page).to have_content("Not yet rated")
+    end
+
+    it "can downvote" do
+      restroom = create(:restroom, upvote: 0, downvote: 0)
+
+      visit "/restrooms/#{restroom.id}"
+      click_button "Thumbs Down"
+
+      expect(page).to have_content("0% positive")
+    end
+
+    it "can upvote" do
+      restroom = create(:restroom, upvote: 0, downvote: 0)
+
+      visit "/restrooms/#{restroom.id}"
+      click_button "Thumbs Up"
+
+      expect(page).to have_content("100% positive")
+    end
+  end
 end
