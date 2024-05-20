@@ -28,17 +28,18 @@ describe 'restrooms', :js do
       expect(page).to have_content("Your submission was rejected as spam.")
     end
 
-    # it "should guess my location" do
-    #   visit "/"
-    #   click_link "Submit a New Restroom"
-    #   mock_location("Oakland")
+    it 'guesses my location' do
+      visit "/"
+      click_link "Submit a New Restroom"
+      mock_location("Oakland")
 
-    #   find(".guess-btn").click
+      click_button 'Guess current location'
+      page.driver.wait_for_network_idle
 
-    #   expect(page).to have_field('restroom[street]', with: "1400 Broadway")
-    #   expect(page).to have_field('restroom[city]', with: "Oakland")
-    #   expect(page).to have_field('restroom[state]', with: "CA")
-    # end
+      expect(page).to have_field('restroom[street]', with: "1400 Broadway")
+      expect(page).to have_field('restroom[city]', with: "Oakland")
+      expect(page).to have_field('restroom[state]', with: "California")
+    end
   end
 
   describe 'search' do
@@ -59,7 +60,7 @@ describe 'restrooms', :js do
       mock_location "Oakland"
       click_button 'Search by Current Location'
 
-      expect(page).not_to have_content 'Some Cafe'
+      expect(page).to have_content 'Some Cafe'
     end
 
     it 'can search from the splash page with a screen reader' do
@@ -69,23 +70,18 @@ describe 'restrooms', :js do
       expect(find('button.current-location-button')['aria-label']).to be_truthy
     end
 
-    # rubocop:disable RSpec/NoExpectationExample
     it 'displays a map' do
       create(:oakland_restroom)
 
       visit root_path
       mock_location "Oakland"
       find('.current-location-button').click
-      # TODO: Figure out why this isn't working.
-      # print page.html
-      page.has_css?(".mapToggle", visible: true)
-      # find('.mapToggle').click
-      # print page.html
+      expect(page).to have_css(".map-toggle-btn", visible: :visible)
 
-      # TODO: Figure Out why This isn't working either
-      # page.has_css?(#)
-      # expect(page).to have_css('#mapArea.loaded')
-      # expect(page).to have_css('#mapArea .numberCircleText')
+      find('.map-toggle-btn').click
+
+      expect(page).to have_css('#mapArea.loaded')
+      expect(page).to have_css("#mapArea [role=button][aria-label='1']")
     end
   end
 
@@ -101,7 +97,8 @@ describe 'restrooms', :js do
 
       click_button "Preview"
 
-      page.has_css?(".nearby-container .listItem", visible: :visible)
+      expect(page).to have_css("div#mapArea", visible: :visible)
+      expect(page).to have_css("div#mapArea [title='Current Location']", visible: :visible)
     end
   end
 
@@ -114,7 +111,7 @@ describe 'restrooms', :js do
 
       find(".guess-btn").click
 
-      page.has_css?(".nearby-container .listItem", visible: :visible)
+      expect(page).to have_css(".nearby-container .listItem", visible: :visible)
     end
 
     it "does not show nearby restrooms when they don't exist" do
@@ -124,10 +121,9 @@ describe 'restrooms', :js do
 
       find(".guess-btn").click
 
-      page.has_css?(".nearby-container .none", visible: :visible)
+      expect(page).to have_css(".nearby-container .none", visible: :visible)
     end
   end
-  # rubocop:enable RSpec/NoExpectationExample
 
   describe "edit" do
     it "creates an edit listing" do

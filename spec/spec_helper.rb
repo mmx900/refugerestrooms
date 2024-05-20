@@ -62,3 +62,20 @@ Geocoder::Lookup::Test.add_stub(
     }
   ]
 )
+
+Geocoder::Lookup::Test.add_stub(
+  [37.8044, -122.2708],
+  [
+    {
+      "latitude" => 37.8044652,
+      "longitude" => -122.27081,
+      "address" => "1400 Broadway, Oakland, CA 94612, USA",
+      "street" => "1400 Broadway",
+      "city" => "Oakland",
+      "state" => "California",
+      "state_code" => "CA",
+      "country" => "United States",
+      "country_code" => "US"
+    }
+  ]
+)
