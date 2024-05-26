@@ -28,5 +28,8 @@
   "engines": {
     "yarn": "1.x",
     "node": "20.x"
+  },
+  "scripts": {
+    "build": "webpack --config ./config/webpack/webpack.config.js"
   }
 }
