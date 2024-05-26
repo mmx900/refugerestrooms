@@ -1,7 +1,6 @@
 {
   "dependencies": {
     "@rails/ujs": "^7.1.2",
-    "@rails/webpacker": "5.4.0",
     "bootstrap": "^4.1.1",
     "jquery": "^3.3.1",
     "jquery-ujs": "^1.2.2",
@@ -12,9 +11,7 @@
     "webpack-cli": "^3.3.12",
     "yarn": ">=1.0.2"
   },
-  "devDependencies": {
-    "webpack-dev-server": "^3.11.2"
-  },
+  "devDependencies": {},
   "resolutions": {
     "postcss": "^8.4.31",
     "node-fetch": "^2.6.1",
@@ -31,5 +28,10 @@
   },
   "scripts": {
     "build": "webpack --config ./config/webpack/webpack.config.js"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ]
   }
 }
