@@ -30,7 +30,12 @@ module.exports = {
             runner: (/^win/.test(process.platform) ? 'ruby ' : '') + 'bin/rails runner'
           }
         }]
-      }
+      },
+      {
+        test: /\.(js)$/,
+        exclude: /node_modules/,
+        use: ['babel-loader'],
+      },
     ]
   },
   plugins: [
