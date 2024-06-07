@@ -5,13 +5,12 @@ const mode = process.env.NODE_ENV === 'development' ? 'development' : 'productio
 module.exports = {
   mode: mode,
   optimization: {
-    moduleIds: "hashed"
+    moduleIds: "deterministic"
   },
   entry: {
     application: "./app/javascript/application.js"
   },
   output: {
-    filename: "[name].js",
     chunkFilename: "[name]-[contenthash].digested.js",
     sourceMapFilename: "[file]-[fullhash].map",
     path: path.resolve(__dirname, '..', '..', 'app/assets/builds'),
